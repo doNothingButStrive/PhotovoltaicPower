@@ -1,6 +1,7 @@
 # -*-coding:utf8 -*-
 
 import pandas as pd
+import numpy as np
 import lightgbm as lgb
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
@@ -67,9 +68,9 @@ params = {
     "metric": "mse",
     "num_leaves": 30,
     "min_child_samples": 100,
-    "learning_rate": 0.03,
-    "bagging_fraction": 0.7,
-    "feature_fraction": 0.5,
+    "learning_rate": 0.1,
+    "bagging_fraction": 0.8,
+    "feature_fraction": 0.8,
     "bagging_frequency": 5,
     "bagging_seed": 666,
     "verbosity": -1
@@ -88,8 +89,9 @@ def lgb_train():
                     verbose_eval=100)
     y_pred = gbm.predict(X_test)
     plt.plot(y_pred[-60:])
-    plt.plot(y_test[-60:])
+    plt.plot(np.array(y_test)[-60:])
     plt.show()
+    print(gbm.feature_importance())
     ##write result
     '''
     republish_pred = gbm.predict(test)
