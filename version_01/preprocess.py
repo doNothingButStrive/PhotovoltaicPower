@@ -7,6 +7,23 @@ import matplotlib.pyplot as plt
 import datetime
 from sklearn.preprocessing import PolynomialFeatures
 
+class LoadData():
+    
+    def __init__(self, dataType):
+        self.dataType = dataType
+    
+    def loadData(self, station):
+        pass
+    
+    def loadAllData(self):
+        data1 = pd.read_csv('../data/{}_1.csv'.format(self.dataType))
+        data2 = pd.read_csv('../data/{}_2.csv'.format(self.dataType))
+        data3 = pd.read_csv('../data/{}_3.csv'.format(self.dataType))
+        data4 = pd.read_csv('../data/{}_4.csv'.format(self.dataType))
+        if self.dataType == 'train':
+            data3 = data3[]
+        
+
 def get_hour(x):
     h = int(x[11:13])
     m = int(x[14:16])
@@ -68,11 +85,14 @@ def getFeature(station):
   
     
     # polynomial feature
+    train_data = add_poly_features(train_data, ['风速', '风向','温度', '压强', '湿度'])
+    test_data = add_poly_features(test_data, ['风速', '风向','温度', '压强', '湿度'])
+    '''
     train_data = add_poly_features(train_data, ['风速', '风向'])
     train_data = add_poly_features(train_data, ['温度', '压强', '湿度'])
     test_data = add_poly_features(test_data, ['风速', '风向'])
     test_data = add_poly_features(test_data, ['温度', '压强', '湿度'])
-    
+    '''
     train_data, val_data = train_data[train_data.year < 2018], train_data[train_data.year == 2018]
     
     train_data = train_data.drop(['时间', '实发辐照度'], axis=1)
