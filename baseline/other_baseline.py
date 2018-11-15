@@ -61,8 +61,8 @@ train_x = train_x.drop(['时间'], axis=1)
 test = test.drop(['时间'], axis=1)
 print('train_x.shape,test_1.shape : ', train_x.shape, test.shape)
 
-#X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.1, random_state=678)
-X_train, X_test, y_train, y_test = train_x.iloc[:55340], train_x.iloc[55340:], train_y.iloc[:55340], train_y.iloc[55340:]
+X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.1, random_state=678)
+#X_train, X_test, y_train, y_test = train_x.iloc[:55340], train_x.iloc[55340:], train_y.iloc[:55340], train_y.iloc[55340:]
 
 params = {
     "objective": "regression",
